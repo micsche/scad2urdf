@@ -3,6 +3,10 @@
 import os
 import string
 
+NONE_STATEMENT = 0
+JOIN_STATEMENT = 1
+LINK_STATEMENT = 2
+current_task = NONE_STATEMENT
 
 filepath = 'walker.scad'
 printable = set(string.ascii_letters)
@@ -62,60 +66,64 @@ with open(filepath) as fp:
     while line:
         a = line.count("{") - line.count("}")
         s = s + a
-
+        
         if line.startswith("//"):
 
             if "join" in line:
                 joins = line.strip().split(":")[1].split(',')
                 write_join(joins)
-            myname = ''.join(filter(lambda x: x in printable, line))
+                current_task = JOIN_STATEMENT
 
+            if "link" in line:
+                myline = line.strip().split(":")[1]
+                myname = ''.join(filter(lambda x: x in printable, myline))
+                current_task = LINK_STATEMENT
 
+        if current_task == LINK_STATEMENT:
+            if ("translate" in line) and (s==0):
+                trans=(line.split('[')[1].split(']')[0].split(','))
+                line = "translate([0,0,0])"
 
-        if ("translate" in line) and (s==0):
-            trans=(line.split('[')[1].split(']')[0].split(','))
-            line = "translate([0,0,0])"
+            if "color" in line:
+                rgb=(line.split('[')[1].split(']')[0].split(','))
 
-        if "color" in line:
-            rgb=(line.split('[')[1].split(']')[0].split(','))
+            outline = outline + line
 
-        outline = outline + line
+            if s==0 and p==1:
 
-        if s==0 and p==1:
+                if myname == None:
+                    filename_scad = str(idio)+"mesh.scad"
+                    filename_stl = str(idio)+"mesh.stl"
 
-            if myname == None:
-                filename_scad = str(idio)+"mesh.scad"
-                filename_stl = str(idio)+"mesh.stl"
-
-            else:
-                if myname in names:
-                    filename_scad = myname + str(idio) + ".scad"
-                    filename_stl  = myname + str(idio) + ".stl"
-                    filename_stlout = myname + str(idio) + "2.stl"
-                    linkname = myname + str(idio)
                 else:
-                    filename_scad = myname + ".scad"
-                    filename_stl  = myname + ".stl"
-                    filename_stlout = myname + "2.stl"
-                    linkname = myname
-                    names.append(myname)
+                    if myname in names:
+                        filename_scad = myname + str(idio) + ".scad"
+                        filename_stl  = myname + str(idio) + ".stl"
+                        filename_stlout = myname + str(idio) + "2.stl"
+                        linkname = myname + str(idio)
+                    else:
+                        filename_scad = myname + ".scad"
+                        filename_stl  = myname + ".stl"
+                        filename_stlout = myname + "2.stl"
+                        linkname = myname
+                        names.append(myname)
 
-                myname = None
+                    myname = None
 
-            idio = idio + 1
+                idio = idio + 1
 
-            f = open(filename_scad, "w")
-            f.write(outline)
-            f.close()
+                f = open(filename_scad, "w")
+                f.write(outline)
+                f.close()
 
-            os.system("openscad "+filename_scad+" -o "+filename_stl)
-            os.system("meshlabserver -i "+filename_stl+" -o "+filename_stlout)
-            os.system("rm "+filename_stl)
-            os.system("rm "+filename_scad)
+                os.system("openscad "+filename_scad+" -o "+filename_stl)
+                os.system("meshlabserver -i "+filename_stl+" -o "+filename_stlout)
+                os.system("rm "+filename_stl)
+                os.system("rm "+filename_scad)
 
-            write_link(linkname, trans,rgb,filename_stlout)
+                write_link(linkname, trans,rgb,filename_stlout)
 
-            outline = ""
+                outline = ""
         p=s
         line = fp.readline()
 

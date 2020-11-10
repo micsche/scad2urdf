@@ -1,6 +1,6 @@
 // CSG.scad - Basic example of CSG usage
 
-//rightfemur
+//link: rightfemur
 translate([0,-0.24,0])
 {
     color([1,0,0])
@@ -23,7 +23,7 @@ translate([0,-0.24,0])
 }
 }
 
-//rightthigh
+//link: rightthigh
 translate([0,-0.19,0.30])
 {
     color([1,0,0])
@@ -45,7 +45,7 @@ translate([0,-0.19,0.30])
     }
 }
 
-///rightfoot
+//link: rightfoot
 translate ([0.025,-0.24,0])
 {
     color([0,0,1])
@@ -53,7 +53,7 @@ translate ([0.025,-0.24,0])
     union()
     {
         cylinder(h=0.05,r=0.05);
-        translate([-0.10,-0.05,0]) {
+        translate([-0.175,-0.05,0]) {
         cube([0.35,0.02,0.25]);
         }
         translate([-0.05,-0.05,0]) {
@@ -64,7 +64,7 @@ translate ([0.025,-0.24,0])
 }
 
 
-//leftfemur
+//link: leftfemur
 translate([0,0.24,0])
 {
     color([0,1,0])
@@ -86,7 +86,7 @@ translate([0,0.24,0])
     }
 }
 
-//leftthigh
+//link: leftthigh
 translate([0,0.19,0.30])
 {
 
@@ -108,7 +108,7 @@ translate([0,0.19,0.30])
     }
 }
 
-//leftfoot
+//link: leftfoot
 translate ([0.025,0.34,0])
 {
     color([0,1,0])
@@ -116,7 +116,7 @@ translate ([0.025,0.34,0])
     union()
     {
         cylinder(h=0.05,r=0.05);
-        translate([-0.10,-0.05,-0.20]) {
+        translate([-0.175,-0.05,-0.20]) {
         cube([0.35,0.02,0.25]);
         }
         translate([-0.05,-0.05,0]) {
@@ -126,7 +126,7 @@ translate ([0.025,0.34,0])
 }
 }
 
-//hip
+//link: hip
 translate([0,-0.01,0])
 {
     color([0.3,0.3,0.5])
@@ -177,17 +177,66 @@ translate([0.025,0.28,0.60])
    color([0.5,0.5,0.5]);
     union()
     {
-        translate([0.0,0.0,0.0])
+        rotate([90,0,0])
         {
-            rotate([90,0,0])
-            {
-                cylinder(h=0.1,r=0.01);
-            }
+            cylinder(h=0.1,r=0.01);
         }
+    
     }
 }
 
 //join: rightthigh,rightfemur
+translate([0.025,-0.1,0.30])
+{
+   color([0.5,0.5,0.5]);
+    union()
+    {
+        rotate([90,0,0])
+        {
+            cylinder(h=0.15,r=0.01);
+        }
+    
+    }
+}
+
 //join: leftthigh,leftfemur
+translate([0.025,0.32,0.30])
+{
+   color([0.5,0.5,0.5]);
+    union()
+    {
+        rotate([90,0,0])
+        {
+            cylinder(h=0.15,r=0.01);
+        }
+    
+    }
+}
+
 //join: rightfemur,rightfoot
+translate([0.025,0.36,0.0])
+{
+   color([0.5,0.5,0.5]);
+    union()
+    {
+        rotate([90,0,0])
+        {
+            cylinder(h=0.15,r=0.01);
+        }
+    
+    }
+}
+
 //join: leftfemur,leftfoot
+translate([0.025,-0.15,0.0])
+{
+   color([0.5,0.5,0.5]);
+    union()
+    {
+        rotate([90,0,0])
+        {
+            cylinder(h=0.15,r=0.01);
+        }
+    
+    }
+}
