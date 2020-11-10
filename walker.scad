@@ -161,12 +161,9 @@ translate([0.025,-0.15,0.60])
     color([0.5,0.5,0.5]);
     union()
     {
-        translate([0.0,0.0,0.0])
+        rotate([90,0,0])
         {
-            rotate([90,0,0])
-            {
-                cylinder(h=0.1,r=0.01);
-            }
+            cylinder(h=0.1,r=0.01);
         }
     }
 }

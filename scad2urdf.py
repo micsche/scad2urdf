@@ -67,19 +67,37 @@ with open(filepath) as fp:
         a = line.count("{") - line.count("}")
         s = s + a
         
-        if line.startswith("//"):
+        if line.startswith("//"): ## two possible statements Join and Link
 
+            # JOIN needs two links
             if "join" in line:
                 joins = line.strip().split(":")[1].split(',')
-                write_join(joins)
                 current_task = JOIN_STATEMENT
 
+            # LINK is defined by link name and mesh
             if "link" in line:
                 myline = line.strip().split(":")[1]
                 myname = ''.join(filter(lambda x: x in printable, myline))
                 current_task = LINK_STATEMENT
+                
+        # JOIN get only "translate" and "rotate" lines 
+        if current_task == JOIN_STATEMENT:
+            
+            if ("translate" in line):
+                jtrans=(line.split('[')[1].split(']')[0].split(','))
+                
+            if ("rotate" in line):
+                jrota =(line.split('[')[1].split(']')[0].split(','))
+                
+            # if chunk is read from file - then join it
+            if s==0 and p==1:
+                print("found translate ",jtrans, " And rotate", jrota)
+                write_join(joins)
 
+        # LINK get chunk of scad file and export it to an Binary STL File
         if current_task == LINK_STATEMENT:
+            
+            # Store co-ords and remove from intermediate mesh
             if ("translate" in line) and (s==0):
                 trans=(line.split('[')[1].split(']')[0].split(','))
                 line = "translate([0,0,0])"
@@ -87,8 +105,10 @@ with open(filepath) as fp:
             if "color" in line:
                 rgb=(line.split('[')[1].split(']')[0].split(','))
 
+            #outline is chunk of SCAD commands
             outline = outline + line
 
+            # if chunk is read from file - then export it 
             if s==0 and p==1:
 
                 if myname == None:
@@ -121,7 +141,8 @@ with open(filepath) as fp:
                 os.system("rm "+filename_stl)
                 os.system("rm "+filename_scad)
 
-                write_link(linkname, trans,rgb,filename_stlout)
+                # write urdf with stl file
+                write_link(linkname, trans,rgb,filename_stlout) 
 
                 outline = ""
         p=s
