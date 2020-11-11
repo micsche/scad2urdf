@@ -2,11 +2,15 @@
 
 import os
 import string
+import math
+import numpy as np
 
 NONE_STATEMENT = 0
 JOIN_STATEMENT = 1
 LINK_STATEMENT = 2
 current_task = NONE_STATEMENT
+
+link_db={}
 
 filepath = 'walker.scad'
 printable = set(string.ascii_letters)
@@ -20,18 +24,67 @@ wf.write('<?xml version="1.0" encoding="utf-8"?>\n')
 wf.write('<robot name="'+robotname+'">\n')
 wf.write('\n')
 
-def write_join(joins):
+def write_join(joins,jtrans =[0,0,0],jrota=[0,0,0]):
+    
+    jtrans =[0,0,0]
+    #get parent translation
+    parent = joins[0].strip()
+    child =  joins[1].strip()
+    ptrans = link_db[parent]
+    ctrans = link_db[child]
+    trans = [ round(float(jtrans[i])-float(ptrans[i]),3) for i in [0,1,2] ]
+    ja_out='"'
+    for i in trans:
+        ja_out = ja_out + str(i) + " "
+    ja_out = ja_out + '"'
+    
+    print("HINGE -------------------")
+    print(parent,child)
+    print("Parent Origin",ptrans)
+    print("Child Origin",ctrans)
+    print("Translation Option", jtrans)
+    print(trans)
+    print()
+    
+    #create vector from rotation
+    a = np.radians(int(jrota[0])) 
+    b = np.radians(int(jrota[1])) 
+    g = np.radians(int(jrota[2]))
+    
+    sa = math.sin(a)
+    ca = math.cos(a)
+    
+    sb = math.sin(b)
+    cb = math.cos(b)
+    
+    sg = math.sin(g)
+    cg = math.cos(g)
+    
+    axis = np.array([1,0,0])
+    rot_mat = np.array([[ca*cb, ca*sb*sg-sa*cg, ca*sb*cg+sa*sg], \
+                [sa*cb, sa*sb*sg+ca*cg, sa*sb*cg-ca*sg],\
+                [-sb, cb*sg, cb*cg]])
+    rot_axis = np.dot(axis,rot_mat)
+    rot_axis=[ str(round(i,4)) for i in rot_axis]
+    ra_out = '"'
+    for i in rot_axis:
+        ra_out = ra_out + i+ " "
+    ra_out = ra_out +'"'
+    
+    
     [par,child] = joins
     par = "".join(par.split())
     child = "".join(child.split())
     wf.write('<joint name="'+par+"2"+child+'" type="revolute">\n')
+    wf.write('<origin xyz='+ja_out+'/>\n')
+    wf.write('<axis xyz='+ra_out+'/>\n')
     wf.write('<parent link="'+par+'"/>\n')
     wf.write('<child link="'+child+'"/>\n')
     wf.write('</joint>\n')
     wf.write('\n')
 
 def write_link(linkname, trans,rgb,filename_stl):
-    #linkname = filename_stl.split('.')[0]
+    link_db[linkname]=trans
 
     wf.write('<link name="'+linkname+'">\n')
     wf.write('<visual>\n')
@@ -91,8 +144,7 @@ with open(filepath) as fp:
                 
             # if chunk is read from file - then join it
             if s==0 and p==1:
-                print("found translate ",jtrans, " And rotate", jrota)
-                write_join(joins)
+                write_join(joins,jtrans,jrota)
 
         # LINK get chunk of scad file and export it to an Binary STL File
         if current_task == LINK_STATEMENT:
@@ -151,3 +203,5 @@ with open(filepath) as fp:
 
 wf.write("</robot>\n")
 wf.close()
+
+print(link_db)
