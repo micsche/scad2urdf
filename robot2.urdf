@@ -163,43 +163,43 @@
 </link>
 
 <joint name="hip2rightthigh" type="revolute">
-<origin xyz="-0.14 0 0.02 "/>
-<axis xyz="1 0 0"/>
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="hip"/>
 <child link="rightthigh"/>
 </joint>
 
 <joint name="hip2leftthigh" type="revolute">
-<origin xyz="0.14 0.0  0.02 "/>
-<axis xyz="1 0 0"/>
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="hip"/>
 <child link="leftthigh"/>
 </joint>
 
 <joint name="rightthigh2rightfemur" type="revolute">
-<origin xyz="0.0 0.04 -0.3 "/>
-<axis xyz="1 0 0"/>
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="rightthigh"/>
 <child link="rightfemur"/>
 </joint>
 
 <joint name="leftthigh2leftfemur" type="revolute">
-<origin xyz="0.0 0.18 -0.3 "/>
-<axis xyz="1 0 0"/>
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="leftthigh"/>
 <child link="leftfemur"/>
 </joint>
 
-<joint name="rightfemur2rightfoot" type="revolute">
-<origin xyz="-0.005 0.55 -0.3 "/>
-<axis xyz="1 0 0"/>
+<joint name="rightfemur2rightfoot" type="fixed">
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="rightfemur"/>
 <child link="rightfoot"/>
 </joint>
 
-<joint name="leftfemur2leftfoot" type="revolute">
-<origin xyz="-0.005 -0.34 -0.3 "/>
-<axis xyz="1 0 0"/>
+<joint name="leftfemur2leftfoot" type="fixed">
+<origin xyz="0 0 0"/>
+<axis xyz="0 1 0"/>
 <parent link="leftfemur"/>
 <child link="leftfoot"/>
 </joint>

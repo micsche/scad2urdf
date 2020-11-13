@@ -26,7 +26,6 @@ wf.write('\n')
 
 def write_join(joins,jtrans =[0,0,0],jrota=[0,0,0]):
     
-    jtrans =[0,0,0]
     #get parent translation
     parent = joins[0].strip()
     child =  joins[1].strip()
@@ -40,11 +39,13 @@ def write_join(joins,jtrans =[0,0,0],jrota=[0,0,0]):
     
     print("HINGE -------------------")
     print(parent,child)
-    print("Parent Origin",ptrans)
+    print("Hinge Origin",jtrans)
     print("Child Origin",ctrans)
-    print("Translation Option", jtrans)
+    print("Translation Option", ja_out)
     print(trans)
     print()
+    
+    #ja_out = '"0 0.15 0"'
     
     #create vector from rotation
     a = np.radians(int(jrota[0])) 
@@ -70,6 +71,8 @@ def write_join(joins,jtrans =[0,0,0],jrota=[0,0,0]):
     for i in rot_axis:
         ra_out = ra_out + i+ " "
     ra_out = ra_out +'"'
+    
+    ra_out = '"1 0 0"'
     
     
     [par,child] = joins

@@ -5,4 +5,4 @@ rm -f ../mmb/protos/*.proto
 python -m urdf2webots.importer --input=robot.urdf
 
 mv  *.proto protos/protos
-rm *.stl
+#rm *.stl

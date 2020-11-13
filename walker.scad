@@ -31,10 +31,11 @@ translate([0,0,0])
 
 }
 
-//link: rightfemur
+
+//link: rightthigh
 translate([0.025,-0.14,0.0])
 {
-    color([1,0,0])
+    color([1,1,0])
     rotate([-90,0,180]) 
     union() {
         
@@ -52,7 +53,7 @@ translate([0.025,-0.14,0.0])
     }
 }
 
-//link: rightthigh
+//link: rightfemur
 translate([0.03,-0.19,-0.30])
 {
     color([1,0,0])
@@ -91,60 +92,63 @@ translate ([0.025,-0.24,-0.61])
 }
 }
 
-/*
-//link: leftfemur
-translate([0,0.24,0])
-{
-    color([0,1,0])
-    union() {
-    cube([0.05,0.05,0.30]);
-
-    rotate([90,0,0]) {
-        translate([0.025,0,-0.025]) {
-        cylinder(h=0.05,r=0.05,center=true);
-        }
-        }
-
-
-    rotate([90,0,0]) {
-        translate([0.025,0.30,-0.025]) {
-        cylinder(h=0.05,r=0.05,center=true);
-        }
-        }
-    }
-}
 
 //link: leftthigh
-translate([0,0.19,0.30])
+translate([0.025,0.14,0.0])
 {
-
+    color([0,0,1])
+    rotate([-90,0,0]) 
     union() {
-    cube([0.05,0.05,0.30]);
-
-    rotate([90,0,0]) {
-        translate([0.025,0,-0.025]) {
-        cylinder(h=0.05,r=0.05,center=true);
+        
+        cylinder(h=0.05,r=0.05);
+        
+        translate([-0.025,0,0]) {
+        cube([0.05,0.3,0.05]);
         }
+        
+    
+        translate([0,0.3,0.0]) {
+        cylinder(h=0.05,r=0.05);
         }
-
-
-    rotate([90,0,0]) {
-        translate([0.025,0.30,-0.025]) {
-        cylinder(h=0.05,r=0.05,center=true);
-        }
-        }
+        
     }
 }
 
+
+
+
+//link: leftfemur
+translate([0.03,0.19,-0.30])
+{
+    color([0,0,1])
+    rotate([-90,0,0]) 
+    union() {
+        
+        cylinder(h=0.05,r=0.05);
+        
+        translate([-0.025,0,0]) {
+        cube([0.05,0.3,0.05]);
+        }
+        
+    
+        translate([0,0.3,0.0]) {
+        cylinder(h=0.05,r=0.05);
+        }
+        
+    }
+}
+
+
+
 //link: leftfoot
-translate ([0.025,0.34,0])
+translate ([0.025,0.24,-0.61])
 {
     color([0,1,0])
-    rotate([90,0,0]) {
+    rotate([-90,180,0]) {
     union()
     {
         cylinder(h=0.05,r=0.05);
-        translate([-0.175,-0.05,-0.20]) {
+        translate([-0.175,-0.05,0]) {
         cube([0.35,0.02,0.25]);
         }
         translate([-0.05,-0.05,0]) {
@@ -157,7 +161,7 @@ translate ([0.025,0.34,0])
 
 
 //join: hip,rightthigh
-translate([0.025,-0.15,0.60])
+translate([0.025,-0.15,0.0])
 {
     color([0.5,0.5,0.5]);
     union()
@@ -170,7 +174,7 @@ translate([0.025,-0.15,0.60])
 }
 
 //join: hip,leftthigh
-translate([0.025,0.28,0.60])
+translate([0.025,0.28,0.0])
 {
    color([0.5,0.5,0.5]);
     union()
@@ -184,7 +188,7 @@ translate([0.025,0.28,0.60])
 }
 
 //join: rightthigh,rightfemur
-translate([0.025,-0.1,0.30])
+translate([0.025,-0.1,-0.30])
 {
    color([0.5,0.5,0.5]);
     union()
@@ -198,7 +202,7 @@ translate([0.025,-0.1,0.30])
 }
 
 //join: leftthigh,leftfemur
-translate([0.025,0.32,0.30])
+translate([0.025,0.32,-0.30])
 {
    color([0.5,0.5,0.5]);
     union()
@@ -212,7 +216,7 @@ translate([0.025,0.32,0.30])
 }
 
 //join: rightfemur,rightfoot
-translate([0.025,0.36,0.0])
+translate([0.025,0.36,-0.6])
 {
    color([0.5,0.5,0.5]);
     union()
@@ -225,8 +229,8 @@ translate([0.025,0.36,0.0])
     }
 }
 
-//join: leftfemur,leftfoot
-translate([0.025,-0.15,0.0])
+//join: leftfemur,leftfoot 
+translate([0.025,-0.15,-0.6])
 {
    color([0.5,0.5,0.5]);
     union()
@@ -238,4 +242,3 @@ translate([0.025,-0.15,0.0])
 
     }
 }
-*/
