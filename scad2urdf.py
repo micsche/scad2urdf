@@ -100,11 +100,16 @@ def getmatrix():
     matrix = []
     while mine:
         mine = mfp.readline().replace("|","").strip().rstrip().lstrip()
+        mine = ' '.join(mine.split())
+
+        if "Center of Mass" in mine:
+            com = mine.split(" ")[4:]
+            comass = '"<origin rpy="0 0 0" xyz="'+" ".join(com)+'"/>\n'
+
         if "Principal"  in mine:
             start = False
         if start:
-            mtx = ' '.join(mine.split())
-            li = mtx.strip().split(" ")
+            li = mine.strip().split(" ")
             lm = [ float(i) for i in li ]
             matrix.append(lm)
 
@@ -117,9 +122,9 @@ def getmatrix():
     strmat = strmat + 'ixz = "'+str(matrix[0][2])+'" '
     strmat = strmat + 'iyy = "'+str(matrix[1][1])+'" '
     strmat = strmat + 'iyz = "'+str(matrix[1][2])+'" '
-    strmat = strmat + 'izz = "'+str(matrix[2][2])+'" />'
+    strmat = strmat + 'izz = "'+str(matrix[2][2])+'" />\n'
 
-    return strmat
+    return strmat,comass
 
 def write_link(linkname, trans,rgb,filename_stl):
     ftrans = [ float(i) for i in trans]
@@ -143,9 +148,10 @@ def write_link(linkname, trans,rgb,filename_stl):
     wf.write('</collision>\n')
     wf.write('<inertial>\n')
     wf.write('  <mass value="0.01"/>\n')
-    wf.write('  <origin rpy="0 0 0" xyz="0 0 0"/>\n')
 
-    wf.write(getmatrix()) # read matrix from matrix.txt file generated from meshlabserver script file
+    im,com = getmatrix()
+    wf.write(com)
+    wf.write(im) # read matrix from matrix.txt file generated from meshlabserver script file
     wf.write('</inertial>\n')
     wf.write('</link>\n')
     wf.write('\n')

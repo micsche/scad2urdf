@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="pointone">
+
+<link name="bit1">
+<visual>
+ <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="bit12.stl"/>
+  </geometry>
+  <material name="">
+    <color rgba="1 1 0 1"/>
+  </material>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="bit12.stl"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+"<origin rpy="0 0 0" xyz="0.050000 0.050000 0.500000"/>
+<inertia ixx="0.000842" ixy = "0.0" ixz = "-0.0" iyy = "0.000842" iyz = "-0.0" izz = "1.7e-05" />
+</inertial>
+</link>
+
+<link name="bitb">
+<visual>
+ <origin rpy="0 0 0" xyz="0 0 1.2"/>
+  <geometry>
+    <mesh filename="bitb2.stl"/>
+  </geometry>
+  <material name="">
+    <color rgba="1 0 0 1"/>
+  </material>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 1.2"/>
+  <geometry>
+    <mesh filename="bitb2.stl"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+"<origin rpy="0 0 0" xyz="0.050000 0.050000 0.500000"/>
+<inertia ixx="0.000842" ixy = "0.0" ixz = "-0.0" iyy = "0.000842" iyz = "-0.0" izz = "1.7e-05" />
+</inertial>
+</link>
+
+<joint name="bit12bitb" type="revolute">
+<origin xyz="0.0 0.0 0.19999999999999996 "/>
+<axis xyz="1 0 0"/>
+<parent link="bit1"/>
+<child link="bitb"/>
+</joint>
+
+</robot>

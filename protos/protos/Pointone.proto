@@ -102,7 +102,7 @@ PROTO Pointone [
           physics Physics {
             density -1
             mass 0.010000
-            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            centerOfMass [ 0.050000 0.050000 0.500000 ]
           }
         }
       }
@@ -112,7 +112,7 @@ PROTO Pointone [
     physics Physics {
       density -1
       mass 0.010000
-      centerOfMass [ 0.000000 0.000000 0.000000 ]
+      centerOfMass [ 0.050000 0.050000 0.500000 ]
     }
   }
 }
