@@ -1,0 +1,23 @@
+Apply FilterScript: '/home/mike/Documents/gitwal/scad2urdf/topo.mlx'
+Starting Script of 1 actionsfilter: Compute Geometric Measures
+Mesh Bounding Box Size 0.100000  0.100000  1.000000
+Mesh Bounding Box Diag 1.009951 
+Mesh Bounding Box min 0.000000  0.000000  0.000000
+Mesh Bounding Box max 0.100000  0.100000  1.000000
+Mesh Surface Area is 0.420000
+Mesh Total Len of 18 Edges is 9.102793 Avg Len 0.505711
+Mesh Total Len of 18 Edges is 9.102793 Avg Len 0.505711 (including faux edges))
+Thin shell (faces) barycenter:   0.050000   0.050000   0.500000
+Vertices barycenter   0.050000   0.050000   0.500000
+Mesh Volume  is 0.010000
+Center of Mass  is 0.050000 0.050000 0.500000
+Inertia Tensor is :
+    |  0.000842   0.000000  -0.000000 |
+    |  0.000000   0.000842  -0.000000 |
+    | -0.000000  -0.000000   0.000017 |
+Principal axes are :
+    |  0.000000  -0.000000   1.000000 |
+    |  1.000000   0.000000   0.000000 |
+    | -0.000000   1.000000   0.000000 |
+axis momenta are :
+    |  0.000017   0.000842   0.000842 |

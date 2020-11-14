@@ -1,207 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="pointone">
 
-<link name="hip">
+<link name="bit1">
 <visual>
  <origin rpy="0 0 0" xyz="0 0 0"/>
   <geometry>
-    <mesh filename="hip2.stl"/>
-  </geometry>
-  <material name="">
-    <color rgba="0.3 0.3 0.5 1"/>
-  </material>
-</visual>
-<collision>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <geometry>
-    <mesh filename="hip2.stl"/>
-  </geometry>
-</collision>
-<inertial>
-  <mass value="4"/>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
-</link>
-
-<link name="rightthigh">
-<visual>
- <origin rpy="0 0 0" xyz="0.025 -0.14 0.0"/>
-  <geometry>
-    <mesh filename="rightthigh2.stl"/>
+    <mesh filename="bit12.stl"/>
   </geometry>
   <material name="">
     <color rgba="1 1 0 1"/>
   </material>
 </visual>
 <collision>
-  <origin rpy="0 0 0" xyz="0.025 -0.14 0.0"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
   <geometry>
-    <mesh filename="rightthigh2.stl"/>
+    <mesh filename="bit12.stl"/>
   </geometry>
 </collision>
 <inertial>
-  <mass value="4"/>
+  <mass value="0.01"/>
   <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
+<inertia ixx="0.000842" ixy = "0.0" ixz = "-0.0" iyy = "0.000842" iyz = "-0.0" izz = "1.7e-05" /></inertial>
 </link>
 
-<link name="rightfemur">
+<link name="bitb">
 <visual>
- <origin rpy="0 0 0" xyz="0.03 -0.19 -0.30"/>
+ <origin rpy="0 0 0" xyz="0 0 1.2"/>
   <geometry>
-    <mesh filename="rightfemur2.stl"/>
+    <mesh filename="bitb2.stl"/>
   </geometry>
   <material name="">
     <color rgba="1 0 0 1"/>
   </material>
 </visual>
 <collision>
-  <origin rpy="0 0 0" xyz="0.03 -0.19 -0.30"/>
+  <origin rpy="0 0 0" xyz="0 0 1.2"/>
   <geometry>
-    <mesh filename="rightfemur2.stl"/>
+    <mesh filename="bitb2.stl"/>
   </geometry>
 </collision>
 <inertial>
-  <mass value="4"/>
+  <mass value="0.01"/>
   <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
+<inertia ixx="0.000842" ixy = "0.0" ixz = "-0.0" iyy = "0.000842" iyz = "-0.0" izz = "1.7e-05" /></inertial>
 </link>
 
-<link name="rightfoot">
-<visual>
- <origin rpy="0 0 0" xyz="0.025 -0.24 -0.61"/>
-  <geometry>
-    <mesh filename="rightfoot2.stl"/>
-  </geometry>
-  <material name="">
-    <color rgba="0 0 1 1"/>
-  </material>
-</visual>
-<collision>
-  <origin rpy="0 0 0" xyz="0.025 -0.24 -0.61"/>
-  <geometry>
-    <mesh filename="rightfoot2.stl"/>
-  </geometry>
-</collision>
-<inertial>
-  <mass value="4"/>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
-</link>
-
-<link name="leftthigh">
-<visual>
- <origin rpy="0 0 0" xyz="0.025 0.14 0.0"/>
-  <geometry>
-    <mesh filename="leftthigh2.stl"/>
-  </geometry>
-  <material name="">
-    <color rgba="0 0 1 1"/>
-  </material>
-</visual>
-<collision>
-  <origin rpy="0 0 0" xyz="0.025 0.14 0.0"/>
-  <geometry>
-    <mesh filename="leftthigh2.stl"/>
-  </geometry>
-</collision>
-<inertial>
-  <mass value="4"/>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
-</link>
-
-<link name="leftfemur">
-<visual>
- <origin rpy="0 0 0" xyz="0.03 0.19 -0.30"/>
-  <geometry>
-    <mesh filename="leftfemur2.stl"/>
-  </geometry>
-  <material name="">
-    <color rgba="0 0 1 1"/>
-  </material>
-</visual>
-<collision>
-  <origin rpy="0 0 0" xyz="0.03 0.19 -0.30"/>
-  <geometry>
-    <mesh filename="leftfemur2.stl"/>
-  </geometry>
-</collision>
-<inertial>
-  <mass value="4"/>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
-</link>
-
-<link name="leftfoot">
-<visual>
- <origin rpy="0 0 0" xyz="0.025 0.24 -0.61"/>
-  <geometry>
-    <mesh filename="leftfoot2.stl"/>
-  </geometry>
-  <material name="">
-    <color rgba="0 1 0 1"/>
-  </material>
-</visual>
-<collision>
-  <origin rpy="0 0 0" xyz="0.025 0.24 -0.61"/>
-  <geometry>
-    <mesh filename="leftfoot2.stl"/>
-  </geometry>
-</collision>
-<inertial>
-  <mass value="4"/>
-  <origin rpy="0 0 0" xyz="0 0 0"/>
-  <inertia ixx="0.0216667" ixy="0" ixz="0" iyy="0.0216667" iyz="0" izz="0.0240667"/>
-</inertial>
-</link>
-
-<joint name="hip2rightthigh" type="revolute">
-<origin xyz="-0.14 0 0.02 "/>
+<joint name="bit12bitb" type="revolute">
+<origin xyz="0.0 0.0 0.19999999999999996 "/>
 <axis xyz="1 0 0"/>
-<parent link="hip"/>
-<child link="rightthigh"/>
-</joint>
-
-<joint name="hip2leftthigh" type="revolute">
-<origin xyz="0.14 0.0  0.02 "/>
-<axis xyz="1 0 0"/>
-<parent link="hip"/>
-<child link="leftthigh"/>
-</joint>
-
-<joint name="rightthigh2rightfemur" type="revolute">
-<origin xyz="0.0 0.04 -0.3 "/>
-<axis xyz="1 0 0"/>
-<parent link="rightthigh"/>
-<child link="rightfemur"/>
-</joint>
-
-<joint name="leftthigh2leftfemur" type="revolute">
-<origin xyz="0.0 0.18 -0.3 "/>
-<axis xyz="1 0 0"/>
-<parent link="leftthigh"/>
-<child link="leftfemur"/>
-</joint>
-
-<joint name="rightfemur2rightfoot" type="revolute">
-<origin xyz="-0.005 0.55 -0.3 "/>
-<axis xyz="1 0 0"/>
-<parent link="rightfemur"/>
-<child link="rightfoot"/>
-</joint>
-
-<joint name="leftfemur2leftfoot" type="revolute">
-<origin xyz="-0.005 -0.34 -0.3 "/>
-<axis xyz="1 0 0"/>
-<parent link="leftfemur"/>
-<child link="leftfoot"/>
+<parent link="bit1"/>
+<child link="bitb"/>
 </joint>
 
 </robot>

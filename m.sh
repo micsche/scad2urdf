@@ -1,2 +1,2 @@
-python -m urdf2webots.importer --input=robot2.urdf
+python -m urdf2webots.importer --input=robot.urdf
 mv  *.proto protos/protos
